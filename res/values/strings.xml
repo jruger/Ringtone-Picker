@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello! Welcome to Ringtone Picker. This app will
+		allow you to specify your songs and hear intervals of the songs as
+		they play! I hope you Enjoy!!!</string>
+	<string name="app_name">Ringtone Picker</string>
+	<string name="playlist">Play PlayList</string>
+	<string name="clear">Clear</string>
+	<string name="mediaStore">Welcome to your Media</string>
+	<string name="stop">Stop Music</string>
+	<string name="pause">Pause</string>
+	<string name="resume">Resume</string>
+</resources>

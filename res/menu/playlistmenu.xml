@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+  		android:id="@+id/setPlaylist"
+  		android:title="Set Playlist"
+  		android:orderInCategory="1"></item>
+  <item
+  		android:id="@+id/setDuration"
+  		android:title="Set Duration"
+  		android:orderInCategory="2"></item>
+  <item
+  		android:id="@+id/clearPlaylist"
+  		android:title="Clear Playlist"
+  		android:orderInCategory="3"></item>
+  <item
+  		android:id="@+id/viewPlaylist"
+  		android:title="View Playlist"
+  		android:orderInCategory="3"></item>
+</menu>
