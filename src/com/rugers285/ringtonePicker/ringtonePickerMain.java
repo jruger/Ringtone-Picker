@@ -48,6 +48,8 @@ public class ringtonePickerMain extends Activity {
 			return true;
 
 		case R.id.setDuration:
+			startActivity(new Intent(getApplicationContext(),
+					setDurationActivity.class));
 			return true;
 
 		case R.id.clearPlaylist:

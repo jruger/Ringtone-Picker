@@ -26,7 +26,7 @@ public class DialogSeekBarPreference extends DialogPreference implements
 
 		mSuffix = attrs.getAttributeValue(androidns, "text");
 		mMin = attrs.getAttributeIntValue(androidns, "min", 15);
-		mMax = attrs.getAttributeIntValue(androidns, "max", 60);
+		mMax = attrs.getAttributeIntValue(androidns, "max", 45);
 
 		setDialogLayoutResource(R.layout.my_seekbar_preference);
 	}

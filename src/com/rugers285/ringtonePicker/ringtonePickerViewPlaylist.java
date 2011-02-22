@@ -121,8 +121,12 @@ public class ringtonePickerViewPlaylist extends Activity {
 				valueTV.setText(ringtonePickerMediaStore.playlist.get(i));
 				valueTV.setId(5);
 				((LinearLayout) linearLayout).addView(valueTV);
-
 			}
+			
+			TextView valueTV = new TextView(this);
+			valueTV.setText(Utils.getIntPref(this, setDurationActivity.SET_DURATION_KEY, 15));
+			valueTV.setId(5);
+			((LinearLayout) linearLayout).addView(valueTV);
 		}
 
 	}

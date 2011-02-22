@@ -5,6 +5,6 @@
 <com.rugers285.ringtonePicker.DialogSeekBarPreference xmlns:android="http://schemas.android.com/apk/res/android"
 	android:title="@string/set_duration_title" android:enabled="true"
 	android:key="set_duration" android:summary="@string/set_duration_summary"
-	android:defaultValue="15" android:max="60">
+	android:defaultValue="15" android:max="45">
 </com.rugers285.ringtonePicker.DialogSeekBarPreference>
 </PreferenceScreen>
