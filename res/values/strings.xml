@@ -10,4 +10,6 @@
 	<string name="stop">Stop Music</string>
 	<string name="pause">Pause</string>
 	<string name="resume">Resume</string>
+	<string name="set_duration_title">Set Duration</string>
+	<string name="set_duration_summary">This allows the user to set the </string>
 </resources>
