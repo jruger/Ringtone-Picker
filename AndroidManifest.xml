@@ -15,6 +15,7 @@
     <activity android:name="ringtonePickerMediaStore"></activity>
     
 <activity android:name="ringtonePickerViewPlaylist"></activity>
+<activity android:name="setDurationActivity"></activity>
 </application>
 
 
