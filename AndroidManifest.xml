@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.rugers285.ringtonePicker"
       android:versionCode="1"
-      android:versionName="1.0">
+      android:versionName="1.0" android:installLocation="preferExternal">
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".ringtonePickerMain"
                   android:label="@string/app_name">
@@ -18,5 +18,9 @@
 <activity android:name="setDurationActivity"></activity>
 </application>
 
+
+<uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
+<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+<uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
 
 </manifest> 
