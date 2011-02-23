@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,6 +32,16 @@ public class ringtonePickerViewPlaylist extends Activity {
 		setContentView(R.layout.viewplaylist);
 		Log.i(tag, "create song array");
 		listingPlaylist();
+		
+		Button playButton = (Button) findViewById(R.id.play);
+		playButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ringtonePickerMediaStore.playAudio(ringtonePickerMediaStore.playlist, ringtonePickerMediaStore.i);
+				
+			}
+		});
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {

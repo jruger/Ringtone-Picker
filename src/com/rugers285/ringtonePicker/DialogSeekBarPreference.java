@@ -61,7 +61,7 @@ public class DialogSeekBarPreference extends DialogPreference implements
 
 	@Override
 	protected void onSetInitialValue(boolean restore, Object defaultValue) {
-		mValue = getPersistedInt(defaultValue == null ? 15
+		mValue = getPersistedInt(defaultValue == null ? 0
 				: (Integer) defaultValue);
 	}
 

@@ -31,10 +31,10 @@ public class ringtonePickerMediaStore extends Activity {
 	Cursor musiccursor;
 	int music_column_index;
 	int count;
-	MediaPlayer mMediaPlayer;
+	static MediaPlayer mMediaPlayer;
 	static List<String> songArray;
 	static List<String> playlist;
-	int i = 0;
+	static int i = 0;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -132,7 +132,7 @@ public class ringtonePickerMediaStore extends Activity {
 		mMediaPlayer = new MediaPlayer();
 	}
 
-	public void playAudio(List<String> songArray2, int i2) {
+	public static void playAudio(List<String> songArray2, int i2) {
 		Log.i("songArray", "Number of Songs: " + songArray.size());
 
 		try {
@@ -153,7 +153,7 @@ public class ringtonePickerMediaStore extends Activity {
 		}
 	}
 
-	private OnCompletionListener listener = new OnCompletionListener() {
+	private static OnCompletionListener listener = new OnCompletionListener() {
 		@Override
 		public void onCompletion(MediaPlayer mp) {
 			// TODO Auto-generated method stub

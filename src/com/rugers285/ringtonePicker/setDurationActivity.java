@@ -13,16 +13,13 @@ public class setDurationActivity extends PreferenceActivity {
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.sliderpreference);
-        if(change){
-    		finish();
-    		}	
+        
         PreferenceScreen screen = this.getPreferenceScreen();
 
         Preference raction = (Preference) screen.findPreference(SET_DURATION_KEY);
 
     	raction.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
     	public boolean onPreferenceChange(Preference preference, Object newValue) {
-    		change = true;
     		return true;
     	}
     	});

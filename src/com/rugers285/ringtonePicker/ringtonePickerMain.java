@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 public class ringtonePickerMain extends Activity {
 	/** Called when the activity is first created. */
+	static int duration;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,6 +32,7 @@ public class ringtonePickerMain extends Activity {
 		Log.i(c, "checked external");
 		ringtonePickerMediaStore.songArray = new ArrayList<String>();
 		ringtonePickerMediaStore.playlist = new ArrayList<String>();
+		duration = 15;
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
