@@ -59,6 +59,8 @@ public class ringtonePickerMediaStore extends Activity {
 			return true;
 
 		case R.id.setDuration:
+			startActivity(new Intent(getApplicationContext(),
+					setDurationActivity.class));
 			return true;
 
 		case R.id.clearPlaylist:
@@ -75,6 +77,7 @@ public class ringtonePickerMediaStore extends Activity {
 		return true;
 
 	}
+
 
 	final static int clearPlaylistAlert = 0;
 
