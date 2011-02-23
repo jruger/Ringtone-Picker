@@ -1,9 +1,11 @@
 package com.rugers285.ringtonePicker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -19,6 +21,10 @@ public class DialogSeekBarPreference extends DialogPreference implements
 	private String mSuffix;
 
 	private int mMax, mMin, mValue = 0;
+	
+	private final String debug = "DialogSeekBarPreference";
+	
+	public static boolean finish = false;
 
 	public DialogSeekBarPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -66,17 +72,20 @@ public class DialogSeekBarPreference extends DialogPreference implements
 		if (positiveResult) {
 			int value = mSeekBar.getProgress();
 			if (callChangeListener(value)) {
-				setValue(value);
+				Log.i(debug, "Value is:"+(value+15));
+				setValue(value);				
 			}
 		}
 	}
 
 	public void setValue(int value) {
+		Log.i(debug, "Set value to: "+value);
 		if (value > mMax) {
 			value = mMax;
 		} else if (value < 15) {
 			value = 15;
 		}
+		Log.i(debug, "Set value to: "+ (value+15));
 		mValue = value;
 		persistInt(value);
 	}

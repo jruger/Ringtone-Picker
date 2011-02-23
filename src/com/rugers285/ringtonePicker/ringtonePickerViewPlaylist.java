@@ -114,6 +114,11 @@ public class ringtonePickerViewPlaylist extends Activity {
 			valueTV.setText("Your Playlist is Empty. Please select Set Playlist from the Menu!");
 			valueTV.setId(5);
 			((LinearLayout) linearLayout).addView(valueTV);
+			
+			valueTV = new TextView(this);
+			valueTV.setText(""+Utils.getIntPref(getBaseContext(), setDurationActivity.SET_DURATION_KEY, 15)+15);
+			valueTV.setId(5);
+			((LinearLayout) linearLayout).addView(valueTV);
 		} else {
 
 			for (int i = 0; i < ringtonePickerMediaStore.playlist.size(); i++) {
@@ -124,7 +129,7 @@ public class ringtonePickerViewPlaylist extends Activity {
 			}
 			
 			TextView valueTV = new TextView(this);
-			valueTV.setText(Utils.getIntPref(this, setDurationActivity.SET_DURATION_KEY, 15));
+			valueTV.setText(""+Utils.getIntPref(getBaseContext(), setDurationActivity.SET_DURATION_KEY, 15));
 			valueTV.setId(5);
 			((LinearLayout) linearLayout).addView(valueTV);
 		}
