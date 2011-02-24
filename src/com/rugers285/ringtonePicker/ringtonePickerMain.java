@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +36,19 @@ public class ringtonePickerMain extends Activity {
 		ringtonePickerMediaStore.songArray = new ArrayList<String>();
 		ringtonePickerMediaStore.playlist = new ArrayList<String>();
 		duration = 15;
+		
+		TelephonyManager telManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+		
+		telManager.listen(new PhoneStateListener(){
+			public void OnCallStateChanged(int state, String incomingNumber){
+				String newState = getCallStateString(state);
+				if (state == TelephonyManager.CALL_STATE_RINGING){
+					Log.i("telephony", newState + "number = " + incomingNumber);
+				}else{
+					Log.i("telephony", newState);
+				}
+			}
+		}, PhoneStateListener.LISTEN_CALL_STATE);
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
