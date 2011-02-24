@@ -24,7 +24,7 @@ public class myPhoneStateListener extends PhoneStateListener {
 		    case TelephonyManager.CALL_STATE_RINGING:
 
 		      Log.d("DEBUG", "RINGING");
-
+		      ringtonePickerMediaStore.playAudio(ringtonePickerMediaStore.playlist, ringtonePickerMediaStore.i);
 		    break;
 
 		    }

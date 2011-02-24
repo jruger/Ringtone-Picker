@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
 import android.telephony.PhoneStateListener;
@@ -36,6 +37,7 @@ public class ringtonePickerMain extends Activity {
 		ringtonePickerMediaStore.songArray = new ArrayList<String>();
 		ringtonePickerMediaStore.playlist = new ArrayList<String>();
 		duration = 15;
+		ringtonePickerMediaStore.mMediaPlayer = new MediaPlayer();
 		
 		myPhoneStateListener phoneListener=new myPhoneStateListener();
 		TelephonyManager telManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);

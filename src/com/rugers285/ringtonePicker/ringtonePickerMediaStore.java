@@ -134,13 +134,17 @@ public class ringtonePickerMediaStore extends Activity {
 
 	public static void playAudio(List<String> songArray2, int i2) {
 		Log.i("songArray", "Number of Songs: " + songArray.size());
-
+        String debug = "playAudio";
 		try {
 			Log.i("MediaPalyer", "Song Number: " + i2);
 			mMediaPlayer.reset();
+			Log.i(debug,"resetMediaPlayer");
 			mMediaPlayer.setDataSource(songArray2.get(i2));
+			Log.i(debug,"setMediaPlayerDataSource");
 			mMediaPlayer.prepare();
+			Log.i(debug,"prepareMediaPlayer");
 			mMediaPlayer.start();
+			Log.i(debug,"startMediaPlayer");
 
 			mMediaPlayer.setOnCompletionListener(listener);
 
