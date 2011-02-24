@@ -37,18 +37,9 @@ public class ringtonePickerMain extends Activity {
 		ringtonePickerMediaStore.playlist = new ArrayList<String>();
 		duration = 15;
 		
+		myPhoneStateListener phoneListener=new myPhoneStateListener();
 		TelephonyManager telManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-		
-		telManager.listen(new PhoneStateListener(){
-			public void OnCallStateChanged(int state, String incomingNumber){
-				String newState = getCallStateString(state);
-				if (state == TelephonyManager.CALL_STATE_RINGING){
-					Log.i("telephony", newState + "number = " + incomingNumber);
-				}else{
-					Log.i("telephony", newState);
-				}
-			}
-		}, PhoneStateListener.LISTEN_CALL_STATE);
+	    telManager.listen(phoneListener,PhoneStateListener.LISTEN_CALL_STATE);
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
