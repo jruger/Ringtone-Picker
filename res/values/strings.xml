@@ -3,6 +3,7 @@
 	<string name="hello">Hello! Welcome to Ringtone Picker. This app will
 		allow you to specify your songs and hear intervals of the songs as
 		they play! I hope you Enjoy!!!</string>
+	<string name="notes">Selecting Menu will open up your options. Set playlist allows you to add your song, clear playlist allows you to clear your playlist. and view playlist allows you to view what you already have in your playlist.</string>
 	<string name="app_name">Ringtone Picker</string>
 	<string name="play">Play PlayList</string>
 	<string name="clear">Clear</string>

@@ -26,8 +26,9 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
-public class ringtonePickerMediaStore extends Activity {
+public class ringtonePickerSetPlaylist extends Activity {
 	ListView musiclist;
 	Cursor musiccursor;
 	int music_column_index;
@@ -36,13 +37,17 @@ public class ringtonePickerMediaStore extends Activity {
 	static List<String> songArray;
 	static List<String> playlist;
 	static int i = 0;
+	static String debug = "SetPlaylistOnCreate";
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Log.i(debug,"saveInstance");
 		setContentView(R.layout.mediastore);
+		Log.i(debug,"Set Content View");
 		init_phone_music_grid();
+		Log.i(debug,"call music grid");
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,7 +61,7 @@ public class ringtonePickerMediaStore extends Activity {
 		switch (item.getItemId()) {
 		case R.id.setPlaylist:
 			startActivity(new Intent(getApplicationContext(),
-					ringtonePickerMediaStore.class));
+					ringtonePickerSetPlaylist.class));
 			return true;
 
 		case R.id.setDuration:
@@ -93,7 +98,7 @@ public class ringtonePickerMediaStore extends Activity {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {
-									ringtonePickerMediaStore.playlist.clear();
+									ringtonePickerSetPlaylist.playlist.clear();
 								}
 							})
 					.setNegativeButton("No",
@@ -134,21 +139,6 @@ public class ringtonePickerMediaStore extends Activity {
 	}
 
 	public static void playAudio(List<String> songArray2, int i2) {
-		
-		/*ok so do this
-		right at the begining u start the track
-		start the timer
-		after the timer fires
-		call getCurrentPosition()
-		save that to a pfref and stop the track
-		then on the next start call the pref seek to it
-		and play
-		timer again
-		the if the track ends oncomplete load the next track
-		and save the list position to a pref
-		so you can remember what track its on
-		and as perusal wait till the timer is up and stop and save to pref
-		got me?*/
 
 		Log.i("songArray", "Number of Songs: " + songArray.size());
         String debug = "playAudio";
@@ -176,8 +166,9 @@ public class ringtonePickerMediaStore extends Activity {
 
 				@Override
 				public void run() {
+					
 				Utils.setIntPref(ringtonePickerMain.context, "TIMER", mMediaPlayer.getCurrentPosition());
-				mMediaPlayer.pause();
+				mMediaPlayer.stop();
 				}
 				});
 				} catch (Exception e) {
@@ -215,6 +206,7 @@ public class ringtonePickerMediaStore extends Activity {
 		public void onItemClick(AdapterView parent, View v, int position,
 				long id) {
 			System.gc();
+			if(songArray.size()<1){
 			music_column_index = musiccursor
 					.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
 			musiccursor.moveToPosition(position);
@@ -227,6 +219,14 @@ public class ringtonePickerMediaStore extends Activity {
 			String songname = musiccursor.getString(music_column_index);
 			playlist.add(songname);
 			Log.i("On click", "Added: " + songname);
+			}else{
+				Context context = getApplicationContext();
+				CharSequence text = "For the Free Alpha Release only one song is allowed in the playlist\n To see your currently selected song please visit the View Playlist in the menu";
+				int duration = Toast.LENGTH_SHORT;
+
+				Toast toast = Toast.makeText(context, text, duration);
+				toast.show();
+			}
 		}
 	};
 

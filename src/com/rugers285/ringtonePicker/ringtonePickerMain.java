@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ringtonePickerMain extends Activity {
 	/** Called when the activity is first created. */
@@ -36,13 +37,12 @@ public class ringtonePickerMain extends Activity {
 		setContentView(R.layout.main);
 		Log.i(c, "setContentView");
 		checkExternal();
-		context = this;
 		Log.i(c, "checked external");
-		ringtonePickerMediaStore.songArray = new ArrayList<String>();
-		ringtonePickerMediaStore.playlist = new ArrayList<String>();
-		duration = 60000;
-		ringtonePickerMediaStore.mMediaPlayer = new MediaPlayer();
-		
+		ringtonePickerSetPlaylist.songArray = new ArrayList<String>();
+		ringtonePickerSetPlaylist.playlist = new ArrayList<String>();
+		duration = 25000;
+		ringtonePickerSetPlaylist.mMediaPlayer = new MediaPlayer();
+		context = this;
 		myPhoneStateListener phoneListener=new myPhoneStateListener();
 		TelephonyManager telManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 	    telManager.listen(phoneListener,PhoneStateListener.LISTEN_CALL_STATE);
@@ -55,11 +55,14 @@ public class ringtonePickerMain extends Activity {
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		Log.i("OptionsMenu"," Item selected entered");
 
 		switch (item.getItemId()) {
 		case R.id.setPlaylist:
+			Log.i("setPlaylist"," Item selected entered");
 			startActivity(new Intent(getApplicationContext(),
-					ringtonePickerMediaStore.class));
+					ringtonePickerSetPlaylist.class));
 			return true;
 
 		case R.id.setDuration:
@@ -95,7 +98,7 @@ public class ringtonePickerMain extends Activity {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {
-									ringtonePickerMediaStore.playlist.clear();
+									ringtonePickerSetPlaylist.playlist.clear();
 								}
 							})
 					.setNegativeButton("No",
@@ -122,30 +125,43 @@ public class ringtonePickerMain extends Activity {
 	public void checkExternal() {
 		boolean mExternalStorageAvailable = false;
 		boolean mExternalStorageWriteable = false;
-		LinearLayout linearLayout = (LinearLayout) findViewById(R.id.main);
-		TextView checkExternalAvailability = new TextView(this);
 
 		String state = Environment.getExternalStorageState();
 
 		if (Environment.MEDIA_MOUNTED.equals(state)) {
 			// We can read and write the media
 			mExternalStorageAvailable = mExternalStorageWriteable = true;
-			checkExternalAvailability.setText("TRUE");
+			Context context = getApplicationContext();
+			CharSequence text = "Readable Storage Available";
+			int duration = Toast.LENGTH_SHORT;
+
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
 			// Read more:
 			// http://www.brighthub.com/mobile/google-android/articles/48845.aspx#ixzz1E3YdaV2f
 		} else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
 			// We can only read the media
 			mExternalStorageAvailable = true;
 			mExternalStorageWriteable = false;
-			checkExternalAvailability.setText("TRUE");
+			Context context = getApplicationContext();
+			CharSequence text = "Readable Storage Available";
+			int duration = Toast.LENGTH_SHORT;
+
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+			
 		} else {
 			// Something else is wrong. It may be one of many other states, but
 			// all we need
 			// to know is we can neither read nor write
 			mExternalStorageAvailable = mExternalStorageWriteable = false;
-			checkExternalAvailability.setText("FALSE");
+			Context context = getApplicationContext();
+			CharSequence text = "Readable Storage Not Available. Please Check SD card";
+			int duration = Toast.LENGTH_SHORT;
+
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+			
 		}
-		checkExternalAvailability.setId(5);
-		linearLayout.addView(checkExternalAvailability);
 	}
 }

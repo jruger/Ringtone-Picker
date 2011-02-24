@@ -33,15 +33,6 @@ public class ringtonePickerViewPlaylist extends Activity {
 		Log.i(tag, "create song array");
 		listingPlaylist();
 		
-		Button playButton = (Button) findViewById(R.id.play);
-		playButton.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				ringtonePickerMediaStore.playAudio(ringtonePickerMediaStore.playlist, ringtonePickerMediaStore.i);
-				
-			}
-		});
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -55,7 +46,7 @@ public class ringtonePickerViewPlaylist extends Activity {
 		switch (item.getItemId()) {
 		case R.id.setPlaylist:
 			startActivity(new Intent(getApplicationContext(),
-					ringtonePickerMediaStore.class));
+					ringtonePickerSetPlaylist.class));
 			return true;
 
 		case R.id.setDuration:
@@ -91,7 +82,7 @@ public class ringtonePickerViewPlaylist extends Activity {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {
-									ringtonePickerMediaStore.playlist.clear();
+									ringtonePickerSetPlaylist.playlist.clear();
 									startActivity(new Intent(getApplicationContext(),
 											ringtonePickerViewPlaylist.class));
 								}
@@ -123,7 +114,7 @@ public class ringtonePickerViewPlaylist extends Activity {
 		Log.i("lp", "created layout");
 		Log.i("lp", "created text view");
 
-		if (ringtonePickerMediaStore.playlist.isEmpty()) {
+		if (ringtonePickerSetPlaylist.playlist.isEmpty()) {
 			TextView valueTV = new TextView(this);
 			valueTV.setText("Your Playlist is Empty. Please select Set Playlist from the Menu!");
 			valueTV.setId(5);
@@ -135,9 +126,9 @@ public class ringtonePickerViewPlaylist extends Activity {
 			((LinearLayout) linearLayout).addView(valueTV);
 		} else {
 
-			for (int i = 0; i < ringtonePickerMediaStore.playlist.size(); i++) {
+			for (int i = 0; i < ringtonePickerSetPlaylist.playlist.size(); i++) {
 				TextView valueTV = new TextView(this);
-				valueTV.setText(ringtonePickerMediaStore.playlist.get(i));
+				valueTV.setText(ringtonePickerSetPlaylist.playlist.get(i));
 				valueTV.setId(5);
 				((LinearLayout) linearLayout).addView(valueTV);
 			}
