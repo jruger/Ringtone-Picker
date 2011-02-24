@@ -162,6 +162,8 @@ public class ringtonePickerMediaStore extends Activity {
 			Log.i(debug,"setMediaPlayerDataSource");
 			mMediaPlayer.prepare();
 			Log.i(debug,"prepareMediaPlayer");
+			mMediaPlayer.seekTo(Utils.getIntPref(ringtonePickerMain.context, "TIMER", 0));
+			Log.i(debug,"seekToMediaPlayer");
 			mMediaPlayer.start();
 			Log.i(debug,"startMediaPlayer");
 			
@@ -174,7 +176,8 @@ public class ringtonePickerMediaStore extends Activity {
 
 				@Override
 				public void run() {
-				Utils.setIntPref(this.Context, "TIMER", mMediaPlayer.getCurrentPosition());
+				Utils.setIntPref(ringtonePickerMain.context, "TIMER", mMediaPlayer.getCurrentPosition());
+				mMediaPlayer.pause();
 				}
 				});
 				} catch (Exception e) {

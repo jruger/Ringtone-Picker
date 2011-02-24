@@ -22,6 +22,9 @@ import android.widget.TextView;
 public class ringtonePickerMain extends Activity {
 	/** Called when the activity is first created. */
 	static int duration;
+	static Context context;
+	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,10 +36,11 @@ public class ringtonePickerMain extends Activity {
 		setContentView(R.layout.main);
 		Log.i(c, "setContentView");
 		checkExternal();
+		context = this;
 		Log.i(c, "checked external");
 		ringtonePickerMediaStore.songArray = new ArrayList<String>();
 		ringtonePickerMediaStore.playlist = new ArrayList<String>();
-		duration = 15000;
+		duration = 60000;
 		ringtonePickerMediaStore.mMediaPlayer = new MediaPlayer();
 		
 		myPhoneStateListener phoneListener=new myPhoneStateListener();
