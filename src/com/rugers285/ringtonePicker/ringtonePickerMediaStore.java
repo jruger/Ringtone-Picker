@@ -14,6 +14,7 @@ import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -133,18 +134,54 @@ public class ringtonePickerMediaStore extends Activity {
 	}
 
 	public static void playAudio(List<String> songArray2, int i2) {
+		
+		/*ok so do this
+		right at the begining u start the track
+		start the timer
+		after the timer fires
+		call getCurrentPosition()
+		save that to a pfref and stop the track
+		then on the next start call the pref seek to it
+		and play
+		timer again
+		the if the track ends oncomplete load the next track
+		and save the list position to a pref
+		so you can remember what track its on
+		and as perusal wait till the timer is up and stop and save to pref
+		got me?*/
+
 		Log.i("songArray", "Number of Songs: " + songArray.size());
         String debug = "playAudio";
+        final Handler mHandler = new Handler();
 		try {
 			Log.i("MediaPalyer", "Song Number: " + i2);
 			mMediaPlayer.reset();
 			Log.i(debug,"resetMediaPlayer");
+			Log.i(debug,"setting data source: " + songArray2.get(i2));
 			mMediaPlayer.setDataSource(songArray2.get(i2));
 			Log.i(debug,"setMediaPlayerDataSource");
 			mMediaPlayer.prepare();
 			Log.i(debug,"prepareMediaPlayer");
 			mMediaPlayer.start();
 			Log.i(debug,"startMediaPlayer");
+			
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+				try {
+				Thread.sleep(ringtonePickerMain.duration);
+				mHandler.post(new Runnable() {
+
+				@Override
+				public void run() {
+				Utils.setIntPref(this.Context, "TIMER", mMediaPlayer.getCurrentPosition());
+				}
+				});
+				} catch (Exception e) {
+				}
+				}
+				}).start();
+
 
 			mMediaPlayer.setOnCompletionListener(listener);
 

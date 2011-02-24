@@ -36,7 +36,7 @@ public class ringtonePickerMain extends Activity {
 		Log.i(c, "checked external");
 		ringtonePickerMediaStore.songArray = new ArrayList<String>();
 		ringtonePickerMediaStore.playlist = new ArrayList<String>();
-		duration = 15;
+		duration = 15000;
 		ringtonePickerMediaStore.mMediaPlayer = new MediaPlayer();
 		
 		myPhoneStateListener phoneListener=new myPhoneStateListener();
