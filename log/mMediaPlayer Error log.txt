@@ -1,1 +1,41 @@
-02-24 10:33:56.123: DEBUG/InCallScreen(134): initInCallTouchUi()...
+02-24 10:33:29.144: INFO/ActivityManager(60): Starting activity: Intent { cmp=com.rugers285.ringtonePicker/.ringtonePickerViewPlaylist }
+02-24 10:33:29.294: INFO/MusicAdapter(280): id
+02-24 10:33:29.354: INFO/ViewPlaylist(280): entered Ringtone view Playlist
+02-24 10:33:29.354: INFO/ViewPlaylist(280): create contentview
+02-24 10:33:29.374: INFO/ViewPlaylist(280): create song array
+02-24 10:33:29.374: INFO/lp(280): Entered
+02-24 10:33:29.374: INFO/lp(280): created layout
+02-24 10:33:29.374: INFO/lp(280): created text view
+02-24 10:33:29.784: INFO/ActivityManager(60): Displayed activity com.rugers285.ringtonePicker/.ringtonePickerViewPlaylist: 487 ms (total 487 ms)
+02-24 10:33:49.404: DEBUG/DEBUG(280): RINGING
+02-24 10:33:49.404: INFO/songArray(280): Number of Songs: 1
+02-24 10:33:49.404: INFO/MediaPalyer(280): Song Number: 0
+02-24 10:33:49.404: INFO/playAudio(280): resetMediaPlayer
+02-24 10:33:49.414: INFO/AudioService(60):  AudioFocus  requestAudioFocus() from AudioFocus_For_Phone_Ring_And_Calls
+02-24 10:33:49.514: DEBUG/CallNotifier(134): RINGING... (new)
+02-24 10:33:49.514: DEBUG/CallNotifier(134): onNewRingingConnection():  incoming: true state: INCOMING post dial state: NOT_STARTED
+02-24 10:33:49.794: INFO/ActivityManager(60): Start proc android.process.acore for content provider com.android.providers.contacts/.ContactsProvider2: pid=286 uid=10000 gids={3003, 1015}
+02-24 10:33:49.985: INFO/StagefrightPlayer(34): setDataSource('50 Cent - In Da Club.mp3')
+02-24 10:33:49.985: INFO/playAudio(280): setMediaPlayerDataSource
+02-24 10:33:50.054: ERROR/MediaPlayer(280): error (1, -2147483648)
+02-24 10:33:50.054: WARN/IO(280): IO Exception Thrown
+02-24 10:33:50.264: WARN/CallNotifier(134): CallerInfo query took too long; manually starting ringer
+02-24 10:33:50.264: WARN/CallNotifier(134): CallerInfo query took too long; falling back to default ringtone
+02-24 10:33:50.264: DEBUG/Ringer(134): ring()...
+02-24 10:33:50.414: DEBUG/Ringer(134): mRingHandler: PLAY_RING_ONCE...
+02-24 10:33:50.414: DEBUG/Ringer(134): creating ringtone: content://settings/system/ringtone
+02-24 10:33:50.514: DEBUG/MediaPlayer(134): Couldn't open file on client side, trying server side
+02-24 10:33:50.994: INFO/ActivityManager(60): Start proc com.android.settings for broadcast com.android.settings/.widget.SettingsAppWidgetProvider: pid=295 uid=1000 gids={3002, 3001, 3003}
+02-24 10:33:51.018: INFO/ActivityManager(60): Starting activity: Intent { act=android.intent.action.MAIN flg=0x10840000 cmp=com.android.phone/.InCallScreen }
+02-24 10:33:51.175: ERROR/MediaPlayerService(34): Couldn't open fd for content://settings/system/ringtone
+02-24 10:33:51.184: ERROR/MediaPlayer(134): Unable to to create media player
+02-24 10:33:51.184: ERROR/RingtoneManager(134): Failed to open ringtone content://settings/system/ringtone
+02-24 10:33:52.454: DEBUG/InCallScreen(134): onCreate()...  this = com.android.phone.InCallScreen@43ece1a8
+02-24 10:33:52.723: INFO/ActivityThread(286): Publishing provider com.android.social: com.android.providers.contacts.SocialProvider
+02-24 10:33:53.082: INFO/ActivityThread(286): Publishing provider applications: com.android.providers.applications.ApplicationsProvider
+02-24 10:33:53.594: INFO/ActivityThread(286): Publishing provider contacts;com.android.contacts: com.android.providers.contacts.ContactsProvider2
+02-24 10:33:54.384: WARN/ResourceType(134): getEntry failing because entryIndex 65 is beyond type entryCount 1
+02-24 10:33:54.934: DEBUG/dalvikvm(134): GC_FOR_MALLOC freed 5562 objects / 318496 bytes in 239ms
+02-24 10:33:55.484: WARN/PowerManagerService(60): App called preventScreenOn(true) but didn't promptly reenable the screen! Forcing the screen back on...
+02-24 10:33:55.534: INFO/ActivityThread(286): Publishing provider call_log: com.android.providers.contacts.CallLogProvider
+02-24 10:33:55.554: INFO/ActivityThread(286): Publishing provider user_dictionary: com.android.providers.userdictionary.UserDictionaryProvider
