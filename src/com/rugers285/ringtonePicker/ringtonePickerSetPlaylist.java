@@ -38,6 +38,7 @@ public class ringtonePickerSetPlaylist extends Activity {
 	static List<String> playlist;
 	static int i = 0;
 	static String debug = "SetPlaylistOnCreate";
+	static int grrr = 0;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -64,13 +65,9 @@ public class ringtonePickerSetPlaylist extends Activity {
 					ringtonePickerSetPlaylist.class));
 			return true;
 
-		case R.id.setDuration:
-			startActivity(new Intent(getApplicationContext(),
-					setDurationActivity.class));
-			return true;
-
 		case R.id.clearPlaylist:
 			showDialog(clearPlaylistAlert);
+			grrr=0;
 			return true;
 
 		case R.id.viewPlaylist:
@@ -206,7 +203,7 @@ public class ringtonePickerSetPlaylist extends Activity {
 		public void onItemClick(AdapterView parent, View v, int position,
 				long id) {
 			System.gc();
-			if(songArray.size()<1){
+			if(grrr==0){
 			music_column_index = musiccursor
 					.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
 			musiccursor.moveToPosition(position);
@@ -219,10 +216,11 @@ public class ringtonePickerSetPlaylist extends Activity {
 			String songname = musiccursor.getString(music_column_index);
 			playlist.add(songname);
 			Log.i("On click", "Added: " + songname);
+			grrr=1;
 			}else{
 				Context context = getApplicationContext();
 				CharSequence text = "For the Free Alpha Release only one song is allowed in the playlist\n To see your currently selected song please visit the View Playlist in the menu";
-				int duration = Toast.LENGTH_SHORT;
+				int duration = Toast.LENGTH_LONG;
 
 				Toast toast = Toast.makeText(context, text, duration);
 				toast.show();

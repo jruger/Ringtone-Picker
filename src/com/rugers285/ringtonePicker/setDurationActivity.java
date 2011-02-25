@@ -9,23 +9,23 @@ import android.preference.PreferenceScreen;
 public class setDurationActivity extends PreferenceActivity {
 	final static String SET_DURATION_KEY = "set_duration";
 	boolean change = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.sliderpreference);
-        
-        PreferenceScreen screen = this.getPreferenceScreen();
+		super.onCreate(savedInstanceState);
+		addPreferencesFromResource(R.xml.sliderpreference);
 
-        Preference raction = (Preference) screen.findPreference(SET_DURATION_KEY);
+		PreferenceScreen screen = this.getPreferenceScreen();
 
-    	raction.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-    	public boolean onPreferenceChange(Preference preference, Object newValue) {
-    		return true;
-    	}
-    	});
-    	
-    	
+		Preference raction = (Preference) screen
+				.findPreference(SET_DURATION_KEY);
 
-               
+		raction.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+				return true;
+			}
+		});
+
 	}
 }

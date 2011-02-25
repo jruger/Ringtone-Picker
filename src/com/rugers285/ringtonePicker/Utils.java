@@ -1,5 +1,7 @@
 package com.rugers285.ringtonePicker;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -27,5 +29,12 @@ public class Utils {
 		editor.putInt(name, value);
 		editor.commit();
 	}
-
+	
+	static void setLists(int a){
+		if (a==0){
+			ringtonePickerSetPlaylist.songArray = new ArrayList<String>();
+			ringtonePickerSetPlaylist.playlist = new ArrayList<String>();
+			ringtonePickerMain.time = 1;
+		}
+		}
 }

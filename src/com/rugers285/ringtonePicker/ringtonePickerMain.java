@@ -24,6 +24,7 @@ public class ringtonePickerMain extends Activity {
 	/** Called when the activity is first created. */
 	static int duration;
 	static Context context;
+	public static int time = 0;
 	
 
 	@Override
@@ -38,11 +39,10 @@ public class ringtonePickerMain extends Activity {
 		Log.i(c, "setContentView");
 		checkExternal();
 		Log.i(c, "checked external");
-		ringtonePickerSetPlaylist.songArray = new ArrayList<String>();
-		ringtonePickerSetPlaylist.playlist = new ArrayList<String>();
 		duration = 25000;
 		ringtonePickerSetPlaylist.mMediaPlayer = new MediaPlayer();
 		context = this;
+		Utils.setLists(time);
 		myPhoneStateListener phoneListener=new myPhoneStateListener();
 		TelephonyManager telManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 	    telManager.listen(phoneListener,PhoneStateListener.LISTEN_CALL_STATE);
@@ -65,13 +65,11 @@ public class ringtonePickerMain extends Activity {
 					ringtonePickerSetPlaylist.class));
 			return true;
 
-		case R.id.setDuration:
-			startActivity(new Intent(getApplicationContext(),
-					setDurationActivity.class));
-			return true;
 
 		case R.id.clearPlaylist:
 			showDialog(clearPlaylistAlert);
+			ringtonePickerSetPlaylist.songArray = new ArrayList<String>();
+			ringtonePickerSetPlaylist.grrr=0;
 			return true;
 
 		case R.id.viewPlaylist:

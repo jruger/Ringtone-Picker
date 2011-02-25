@@ -49,13 +49,9 @@ public class ringtonePickerViewPlaylist extends Activity {
 					ringtonePickerSetPlaylist.class));
 			return true;
 
-		case R.id.setDuration:
-			startActivity(new Intent(getApplicationContext(),
-					setDurationActivity.class));
-			return true;
-
 		case R.id.clearPlaylist:
 			showDialog(clearPlaylistAlert);
+			ringtonePickerSetPlaylist.grrr=0;
 			return true;
 
 		case R.id.viewPlaylist:
@@ -97,10 +93,6 @@ public class ringtonePickerViewPlaylist extends Activity {
 			AlertDialog alert = builder.create();
 			dialog = alert;
 			break;
-		/*
-		 * case DIALOG_GAMEOVER_ID: // do the work to define the game over
-		 * Dialog break;
-		 */
 		default:
 			dialog = null;
 		}
@@ -119,11 +111,6 @@ public class ringtonePickerViewPlaylist extends Activity {
 			valueTV.setText("Your Playlist is Empty. Please select Set Playlist from the Menu!");
 			valueTV.setId(5);
 			((LinearLayout) linearLayout).addView(valueTV);
-			
-			valueTV = new TextView(this);
-			valueTV.setText(""+Utils.getIntPref(getBaseContext(), setDurationActivity.SET_DURATION_KEY, 15)+15);
-			valueTV.setId(5);
-			((LinearLayout) linearLayout).addView(valueTV);
 		} else {
 
 			for (int i = 0; i < ringtonePickerSetPlaylist.playlist.size(); i++) {
@@ -133,10 +120,6 @@ public class ringtonePickerViewPlaylist extends Activity {
 				((LinearLayout) linearLayout).addView(valueTV);
 			}
 			
-			TextView valueTV = new TextView(this);
-			valueTV.setText(""+Utils.getIntPref(getBaseContext(), setDurationActivity.SET_DURATION_KEY, 15));
-			valueTV.setId(5);
-			((LinearLayout) linearLayout).addView(valueTV);
 		}
 
 	}
