@@ -5,23 +5,29 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.media.MediaPlayer;
 import android.util.Log;
 
 public class Utils {
 
+	/**
+	 * Method: getIntPref()
+	 * Params: context, string, int
+	 * Purpose: Returns the integer stored in the preference
+	 * Output: The integer stored in the pref
+	 */
 	static int getIntPref(Context context, String name, int def) {
 		SharedPreferences prefs = context.getSharedPreferences(
 				context.getPackageName(), Context.MODE_PRIVATE);
-		if (prefs.contains(setDurationActivity.SET_DURATION_KEY)) {
-			Log.i("getIntPref", "Found SET_DURATION_KEY");
 			return prefs.getInt(name, def);
-		} else {
-			return prefs.getInt(name, 16);
 		}
 
-	}
-
-	// Store int prefs
+	/**
+	 * Method: setIntPref()
+	 * Params: context,string,int
+	 * Purpose: Stores an int in the pref titled name
+	 * Output: N/A
+	 */
 	static void setIntPref(Context context, String name, int value) {
 		SharedPreferences prefs = context.getSharedPreferences(
 				context.getPackageName(), Context.MODE_PRIVATE);
@@ -30,10 +36,17 @@ public class Utils {
 		editor.commit();
 	}
 	
+	/**
+	 * Method: setLists
+	 * Params: int
+	 * Purpose: creates everything needed to keep track at the beginning
+	 * Output: N/A
+	 */
 	static void setLists(int a){
 		if (a==0){
 			ringtonePickerSetPlaylist.songArray = new ArrayList<String>();
 			ringtonePickerSetPlaylist.playlist = new ArrayList<String>();
+			ringtonePickerSetPlaylist.mMediaPlayer = new MediaPlayer();
 			ringtonePickerMain.time = 1;
 		}
 		}

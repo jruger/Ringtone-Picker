@@ -5,6 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+/**
+ * Creates the BroadcastReciever that listens for an incoming sms
+ * @author Justin Ruger
+ *
+ */
 public class smsReciever extends BroadcastReceiver{
 
 	@Override

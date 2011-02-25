@@ -17,13 +17,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class ringtonePickerViewPlaylist extends Activity {
-	String tag = "ViewPlaylist";
+	String tag = "ViewPlaylist";//logcat tag
 	Cursor musiccursor;
 	int music_column_index;
 	int count;
 	ListView musiclist;
 
-	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		Log.i(tag, "entered Ringtone view Playlist");
@@ -100,6 +99,12 @@ public class ringtonePickerViewPlaylist extends Activity {
 		return dialog;
 	}
 
+	/**
+	 * Method: listingPlaying()
+	 * Params: n/a
+	 * Purpose: to list all of the songs currently in the play list
+	 * Output: textViews of the songs currently in the play list
+	 */
 	private void listingPlaylist() {
 		Log.i("lp", "Entered");
 		LinearLayout linearLayout = (LinearLayout) findViewById(R.id.info);

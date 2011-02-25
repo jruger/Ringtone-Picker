@@ -119,6 +119,12 @@ public class ringtonePickerSetPlaylist extends Activity {
 		return dialog;
 	}
 
+	/**
+	 * Method:init_phone_music_grid()
+	 * Params:n/a
+	 * Purpose:set up the media store and create a list view of all the audio items on sd card
+	 * Output:List View
+	 */
 	private void init_phone_music_grid() {
 		System.gc();
 		String[] proj = { MediaStore.Audio.Media._ID,
@@ -135,6 +141,12 @@ public class ringtonePickerSetPlaylist extends Activity {
 		mMediaPlayer = new MediaPlayer();
 	}
 
+	/**
+	 * Method:playAudio()
+	 * Params:List<String> int
+	 * Purpose:to play songs for duration of 25 seconds then stop 
+	 * Output: song played 
+	 */
 	public static void playAudio(List<String> songArray2, int i2) {
 
 		Log.i("songArray", "Number of Songs: " + songArray.size());

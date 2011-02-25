@@ -1,40 +1,42 @@
 package com.rugers285.ringtonePicker;
+
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-
+/*
+ This is the PhoneStateListener class. This listens for a callStateChange and if it is ringing 
+ calls the playAudio
+ */
 public class myPhoneStateListener extends PhoneStateListener {
-	
+
 	String DEBUG = "myPhoneStateListener";
-	 public void onCallStateChanged(int state,String incomingNumber){
 
-		  switch(state){
+	public void onCallStateChanged(int state, String incomingNumber) {
 
-		    case TelephonyManager.CALL_STATE_IDLE:
+		switch (state) {
 
-		      Log.d(DEBUG, "IDLE");
-		      
-		    break;
+		case TelephonyManager.CALL_STATE_IDLE:
 
-		    case TelephonyManager.CALL_STATE_OFFHOOK:
+			Log.d(DEBUG, "IDLE");
 
-		    	Log.d(DEBUG, "IDLE");
-			      
-			      Utils.setIntPref(ringtonePickerMain.context, "TIMER", ringtonePickerSetPlaylist.mMediaPlayer.getCurrentPosition());
-			      ringtonePickerSetPlaylist.mMediaPlayer.stop();
-		      
+			break;
 
-		    break;
+		case TelephonyManager.CALL_STATE_OFFHOOK:
 
-		    case TelephonyManager.CALL_STATE_RINGING:
+			Log.d(DEBUG, "OFF HOOK");
 
-		      Log.d(DEBUG, "RINGING");
-		      ringtonePickerSetPlaylist.playAudio(ringtonePickerSetPlaylist.songArray, ringtonePickerSetPlaylist.i);
-		    break;
+			break;
 
-		    }
+		case TelephonyManager.CALL_STATE_RINGING:
 
-		  } 
+			Log.d(DEBUG, "RINGING");
+			ringtonePickerSetPlaylist.playAudio(
+					ringtonePickerSetPlaylist.songArray, 0);
+			break;
+
+		}
+
+	}
 
 }
