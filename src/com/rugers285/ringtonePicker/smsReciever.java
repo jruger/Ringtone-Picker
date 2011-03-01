@@ -15,7 +15,7 @@ public class smsReciever extends BroadcastReceiver{
 	@Override
 	public void onReceive(Context arg0, Intent arg1) {
 		Log.d("SMSReciever", "Recieved text");
-	      ringtonePickerSetPlaylist.playAudio(ringtonePickerSetPlaylist.songArray, ringtonePickerSetPlaylist.i);
+	      Utils.playAudio(ringtonePickerSetPlaylist.songArray, Utils.i);
 		
 	}
 

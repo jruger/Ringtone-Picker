@@ -1,14 +1,20 @@
 package com.rugers285.ringtonePicker;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
+import android.os.Handler;
 import android.util.Log;
 
 public class Utils {
+	static MediaPlayer mMediaPlayer;
+	static int i = 0;
 
 	/**
 	 * Method: getIntPref()
@@ -46,8 +52,81 @@ public class Utils {
 		if (a==0){
 			ringtonePickerSetPlaylist.songArray = new ArrayList<String>();
 			ringtonePickerSetPlaylist.playlist = new ArrayList<String>();
-			ringtonePickerSetPlaylist.mMediaPlayer = new MediaPlayer();
+			mMediaPlayer = new MediaPlayer();
 			ringtonePickerMain.time = 1;
 		}
 		}
+	
+	/**
+	 * Method:playAudio()
+	 * Params:List<String> int
+	 * Purpose:to play songs for duration of 25 seconds then stop 
+	 * Output: song played 
+	 */
+	public static void playAudio(List<String> songArray2, int i2) {
+
+		Log.i("songArray", "Number of Songs: " + songArray2.size());
+        String debug = "playAudio";
+        final Handler mHandler = new Handler();
+		try {
+			Log.i("MediaPalyer", "Song Number: " + i2);
+			mMediaPlayer.reset();
+			Log.i(debug,"resetMediaPlayer");
+			Log.i(debug,"setting data source: " + songArray2.get(i2));
+			mMediaPlayer.setDataSource(songArray2.get(i2));
+			Log.i(debug,"setMediaPlayerDataSource");
+			mMediaPlayer.prepare();
+			Log.i(debug,"prepareMediaPlayer");
+			mMediaPlayer.seekTo(Utils.getIntPref(ringtonePickerMain.context, "TIMER", 0));
+			Log.i(debug,"seekToMediaPlayer at time: " + Utils.getIntPref(ringtonePickerMain.context, "TIMER", 0));
+			mMediaPlayer.start();
+			Log.i(debug,"startMediaPlayer");
+			
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+				try {
+				Thread.sleep(ringtonePickerMain.duration);
+				mHandler.post(new Runnable() {
+
+				@Override
+				public void run() {
+					
+				Utils.setIntPref(ringtonePickerMain.context, "TIMER", mMediaPlayer.getCurrentPosition());
+				Log.i("thread","current postion before stop is: " + mMediaPlayer.getCurrentPosition());
+				mMediaPlayer.stop();
+				}
+				});
+				} catch (Exception e) {
+				}
+				}
+				}).start();
+
+
+			mMediaPlayer.setOnCompletionListener(listener);
+
+		} catch (IOException e) {
+			Log.w("IO", "IO Exception Thrown");
+		} catch (IllegalArgumentException e) {
+			Log.w("IllegalArguement", "IllegalArguement Thrown");
+		} catch (Exception e) {
+
+		}
+	}
+
+	private static OnCompletionListener listener = new OnCompletionListener() {
+		@Override
+		public void onCompletion(MediaPlayer mp) {
+			// TODO Auto-generated method stub
+			i++;
+			if (i == ringtonePickerSetPlaylist.songArray.size()) {
+				Log.i("Play Audio", "Reset i");
+				i = 0;
+				Utils.setIntPref(ringtonePickerMain.context, "TIMER", 0);
+			}
+			Log.i("onCompletionListener", "Song Completed: i is" + i);
+			playAudio(ringtonePickerSetPlaylist.songArray, i);
+
+		}
+	};
 }
