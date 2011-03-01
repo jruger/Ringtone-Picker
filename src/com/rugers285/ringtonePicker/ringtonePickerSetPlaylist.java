@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
@@ -162,7 +163,7 @@ public class ringtonePickerSetPlaylist extends Activity {
 			mMediaPlayer.prepare();
 			Log.i(debug,"prepareMediaPlayer");
 			mMediaPlayer.seekTo(Utils.getIntPref(ringtonePickerMain.context, "TIMER", 0));
-			Log.i(debug,"seekToMediaPlayer");
+			Log.i(debug,"seekToMediaPlayer at time: " + Utils.getIntPref(ringtonePickerMain.context, "TIMER", 0));
 			mMediaPlayer.start();
 			Log.i(debug,"startMediaPlayer");
 			
@@ -177,6 +178,7 @@ public class ringtonePickerSetPlaylist extends Activity {
 				public void run() {
 					
 				Utils.setIntPref(ringtonePickerMain.context, "TIMER", mMediaPlayer.getCurrentPosition());
+				Log.i("thread","current postion before stop is: " + mMediaPlayer.getCurrentPosition());
 				mMediaPlayer.stop();
 				}
 				});
@@ -205,6 +207,7 @@ public class ringtonePickerSetPlaylist extends Activity {
 			if (i == songArray.size()) {
 				Log.i("Play Audio", "Reset i");
 				i = 0;
+				Utils.setIntPref(ringtonePickerMain.context, "TIMER", 0);
 			}
 			Log.i("onCompletionListener", "Song Completed: i is" + i);
 			playAudio(songArray, i);
