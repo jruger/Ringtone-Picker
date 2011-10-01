@@ -18,7 +18,7 @@ public class clearDialog extends Activity {
 	 
 	                Dialog dialog = new Dialog(this);
 	 
-	                dialog.setContentView(R.layout.beerwine);
+	//                dialog.setContentView(R.layout.beerwine);
 	 
 	                dialog.setTitle("beer or wine");
 	 
@@ -27,5 +27,5 @@ public class clearDialog extends Activity {
 	        }
 	 
 	}
-	
-}
+
+//test this
